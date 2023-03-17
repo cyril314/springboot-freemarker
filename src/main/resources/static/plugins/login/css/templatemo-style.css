@@ -1,0 +1,165 @@
+@import url("../../layui/font/extend/iconfont.css");
+
+body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 14px;
+    color: #3c3c3c;
+    font-weight: 400;
+    background: #f4f7fa;
+    position: relative;
+}
+
+#particles-js {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 99%;
+}
+
+.aut-bg-img {
+    background-image: url("../bg-images/bg4.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+.auth-wrapper {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    overflow: hidden;
+    min-width: 100%;
+    min-height: 100vh;
+}
+
+.auth-wrapper .auth-icon {
+    font-size: 30px;
+}
+
+.auth-wrapper .auth-content {
+    position: relative;
+    width: 390px;
+    padding: 15px;
+    z-index: 5;
+}
+
+.text-white {
+    color: #c9d0d5 !important;
+}
+
+.custom-select::placeholder, .form-control::placeholder {
+    color: #aaaeb3;
+    opacity: 1;
+}
+
+.auth-wrapper .input-group {
+    background: transparent;
+}
+
+/**  ==========================
+   Radio & Checked css start
+==========================  **/
+.checkbox {
+    padding: 10px 0;
+    min-height: auto;
+    position: relative;
+    margin-right: 5px;
+}
+
+.checkbox input[type=checkbox] {
+    margin: 0;
+    display: none;
+    width: 22px;
+}
+
+.checkbox input[type=checkbox] + .cr {
+    padding-left: 0;
+}
+
+
+.checkbox input[type=checkbox] + .cr:before {
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+    margin-right: 10px;
+    border: 2px solid #e9eaec;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 19px;
+    vertical-align: bottom;
+    text-align: center;
+    background: #ffffff;
+    color: transparent;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+}
+
+
+.checkbox.checkbox-fill input[type=checkbox] + .cr:after {
+    content: "";
+    width: 21px;
+    height: 21px;
+    display: inline-block;
+    margin-right: 10px;
+    border: 2px solid #e9eaec;
+    border-radius: 2px;
+    vertical-align: bottom;
+    text-align: center;
+    background: transparent;
+    cursor: pointer;
+    -webkit-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
+    position: absolute;
+    top: 7px;
+    left: 3px;
+}
+
+.checkbox.checkbox-fill input[type=checkbox] + .cr:before {
+    opacity: 0;
+    content: "\e733";
+    font-family: 'layui-icon';
+    font-size: 27px;
+    background: transparent;
+}
+
+.checkbox.checkbox-fill input[type=checkbox]:checked + .cr:after {
+    opacity: 0;
+}
+
+.checkbox.checkbox-fill input[type=checkbox]:checked + .cr:before {
+    opacity: 1;
+    background: transparent;
+    color: #1dd5d2;
+    border-color: transparent;
+}
+
+.checkbox .cr {
+    cursor: pointer;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 0.25rem;
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-right: 10px;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #038fcf;
+    border-color: #0386c3;
+}

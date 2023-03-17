@@ -1,0 +1,72 @@
+# Spring配置
+spring:
+  # 启动配置
+  profiles:
+    active: dev
+  freemarker:
+    enabled: true
+    cache: false #缓存配置
+    suffix: .ftl  #后缀名
+    charset: UTF-8 #编码格式
+    content-type: text/html; charset=utf-8
+    request-context-attribute: request  #req访问request
+    template-loader-path: classpath:/templates/ #模板加载路径 按需配置
+    expose-request-attributes: false
+    expose-session-attributes: false
+    expose-spring-macro-helpers: false
+    settings:
+      number_format: '0.##' #数字格式化，无小数点
+  mvc:
+    date-format: yyyy-MM-dd HH:mm:ss
+    servlet:
+      load-on-startup: 100
+  # 静态资源
+  resource:
+      static-locations: classpath:/static/,classpath:/html/
+  # 资源信息
+  messages:
+    # 国际化资源文件路径
+    basename: i18n/messages
+  session:
+    store-type: jdbc
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+  # 文件上传
+  servlet:
+     multipart:
+       max-file-size:  500MB
+       max-request-size:  500MB
+  # 服务模块
+  devtools:
+    restart:
+      # 热部署开关
+      enabled: true
+      additional-paths: src/main/java
+      exclude: html/**,static/**,templates/**,mapper/**,mybatis/**,config/**
+  # activiti模型检测
+  activiti:
+    check-process-definitions: false
+
+# Ehcache配置
+cache:
+  type: ehcache
+  ehcache:
+    config: classpath:/ehcache.xml
+
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+  level:
+    com.aim.mapper: ERROR
+
+#配置监控统计拦截的filters，去掉后监控界面sql将无法统计,'wall'用于防火墙
+filters: stat, wall, log4j
+
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+      enabled: true
+      force: true
+
