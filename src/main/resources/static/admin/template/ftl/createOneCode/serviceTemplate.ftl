@@ -1,7 +1,7 @@
-package com.aim.service.${packageName};
+package com.fit.service.${packageName};
 
-import com.aim.base.IService;
-import com.aim.mapper.master.db.${objectName}Mapper;
+import com.fit.base.IService;
+import com.fit.mapper.master.db.${objectName}Mapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

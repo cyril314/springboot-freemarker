@@ -4,19 +4,19 @@
 <configuration>
 
 	<typeAliases>
-		<typeAlias type="com.aim.entity.PageData" alias="pd"/>
-		<typeAlias type="com.aim.entity.Page" alias="page"/>
-		<typeAlias type="com.aim.entity.system.User" alias="user"/>
-		<typeAlias type="com.aim.entity.system.Menu" alias="menu"/>
-		<typeAlias type="com.aim.entity.system.Role" alias="role"/>
-		<typeAlias type="com.aim.entity.system.Dictionaries" alias="dictionaries"/>
+		<typeAlias type="com.fit.entity.PageData" alias="pd"/>
+		<typeAlias type="com.fit.entity.Page" alias="page"/>
+		<typeAlias type="com.fit.entity.system.User" alias="user"/>
+		<typeAlias type="com.fit.entity.system.Menu" alias="menu"/>
+		<typeAlias type="com.fit.entity.system.Role" alias="role"/>
+		<typeAlias type="com.fit.entity.system.Dictionaries" alias="dictionaries"/>
 		
 		<!-- 这里添加实体类 -->
 		
 	</typeAliases>
 	
 	<plugins>
-		<plugin interceptor="com.aim.plugins.PagePlugin">
+		<plugin interceptor="com.fit.plugins.PagePlugin">
 			<property name="dialect" value="mysql"/>
 			<property name="pageSqlId" value=".*listPage.*"/>
 		</plugin>

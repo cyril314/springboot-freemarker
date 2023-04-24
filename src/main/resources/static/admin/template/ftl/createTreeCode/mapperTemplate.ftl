@@ -1,7 +1,7 @@
-package com.aim.mapper.master.${packageName};
+package com.fit.mapper.master.${packageName};
 
-import com.aim.base.IDao;
-import com.aim.entity.PageData;
+import com.fit.base.IDao;
+import com.fit.entity.PageData;
 
 /** 
  *  ${TITLE}Mapper

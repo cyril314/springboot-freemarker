@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.aim.mapper.dsno2.system.UsersMapper">
+<mapper namespace="com.fit.mapper.dsno2.system.UsersMapper">
 	
 	<resultMap type="User" id="userAndRoleResultMap">
 		<id column="USER_ID" property="USER_ID"/>
