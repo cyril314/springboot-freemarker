@@ -5,7 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
@@ -27,26 +27,10 @@ public class SlaveDataSourceConfig {
     static final String CONFIG_LOCATION = "classpath:mybatis/slave/mybatis-config.xml"; //自定义的mybatis config 文件位置
     static final String TYPE_ALIASES_PACKAGE = "com.fit.entity";                        //扫描的 实体类 目录
 
-    @Value("${spring.datasource.druid.slave.url}")
-    private String url;
-
-    @Value("${spring.datasource.druid.slave.username}")
-    private String user;
-
-    @Value("${spring.datasource.druid.slave.password}")
-    private String password;
-
-    @Value("${spring.datasource.driverClassName}")
-    private String driverClass;
-
     @Bean(name = "slaveDataSource")
+    @ConfigurationProperties(prefix = "spring.datasource.druid.slave")
     public DataSource slaveDataSource() {
-        DruidDataSource dataSource = new DruidDataSource();
-        dataSource.setDriverClassName(driverClass);
-        dataSource.setUrl(url);
-        dataSource.setUsername(user);
-        dataSource.setPassword(password);
-        return dataSource;
+        return new DruidDataSource();
     }
 
     @Bean(name = "slaveTransactionManager")

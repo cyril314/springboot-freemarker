@@ -79,7 +79,7 @@ function login() {
             }
         }
     }).done().fail(function () {
-        swal("登录失败!", "请求服务器无响应，稍后再试", "warning");
+        swal("登录失败!,请求服务器无响应，稍后再试", "warning");
     });
 }
 

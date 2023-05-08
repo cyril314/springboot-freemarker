@@ -5,7 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -28,27 +28,12 @@ public class MasterDataSourceConfig {
     static final String CONFIG_LOCATION = "classpath:mybatis/master/mybatis-config.xml"; //自定义的mybatis config 文件位置
     static final String TYPE_ALIASES_PACKAGE = "com.fit.entity";                        //扫描的 实体类 目录
 
-    @Value("${spring.datasource.druid.master.url}")
-    private String url;
-
-    @Value("${spring.datasource.druid.master.username}")
-    private String user;
-
-    @Value("${spring.datasource.druid.master.password}")
-    private String password;
-
-    @Value("${spring.datasource.driverClassName}")
-    private String driverClass;
 
     @Bean(name = "masterDataSource")
     @Primary
+    @ConfigurationProperties(prefix = "spring.datasource.druid.master")
     public DataSource masterDataSource() {
-        DruidDataSource masterDataSource = new DruidDataSource();
-        masterDataSource.setDriverClassName(driverClass);
-        masterDataSource.setUrl(url);
-        masterDataSource.setPassword(password);
-        masterDataSource.setUsername(user);
-        return masterDataSource;
+        return new DruidDataSource();
     }
 
     @Bean(name = "masterTransactionManager")

@@ -39,6 +39,7 @@ public class DefaultShiroRealm extends AuthorizingRealm {
                 return new SimpleAuthenticationInfo(pd.getString("USERNAME"), pd.getString("PASSWORD"), getName());
             }
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return null;
     }
