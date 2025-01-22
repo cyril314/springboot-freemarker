@@ -14,26 +14,21 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
  * MyShiroFilterFactoryBean
  */
-public class DefaultShiroFilterFactoryBean extends ShiroFilterFactoryBean {
+public class ShiroLeachFactoryBean extends ShiroFilterFactoryBean {
 
     private Set<String> ignoreExt; // ShiroFilter将直接忽略的请求
 
-    public DefaultShiroFilterFactoryBean() {
+    public ShiroLeachFactoryBean() {
         super();
         ignoreExt = new HashSet<String>();
-        ignoreExt.add(".ico");
-        ignoreExt.add(".jpg");
-        ignoreExt.add(".png");
-        ignoreExt.add(".gif");
-        ignoreExt.add(".bmp");
-        ignoreExt.add(".js");
-        ignoreExt.add(".css");
+        ignoreExt.addAll(Arrays.asList(".bmp|.css|.jpg|.js|.ico|.gif|.png|.svg|.swf|.woff".split("|")));
     }
 
     /**

@@ -60,16 +60,20 @@ spring:
       enabled: true
       additional-paths: src/main/java
       exclude: html/**,static/**,templates/**,mapper/**,mybatis/**,config/**
+  # Ehcache配置
+  cache:
+    type: ehcache
+    ehcache:
+      config: classpath:/ehcache.xml
   # activiti模型检测
   activiti:
     check-process-definitions: false
-
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
       # 主库数据源
       master:
-        url: jdbc:mysql://127.0.0.1:3306/fhadmin?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://127.0.0.1:3306/aim_admin?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: root
         password: root
         driverClassName: com.mysql.cj.jdbc.Driver
@@ -77,7 +81,7 @@ spring:
       slave:
         # 从数据源开关/默认关闭
         enabled: false
-        url: jdbc:mysql://192.168.31.127:3306/fhadmin?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+        url: jdbc:mysql://192.168.31.127:3306/aim_admin?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
         username: root
         password: root
         driverClassName: com.mysql.cj.jdbc.Driver
@@ -112,12 +116,6 @@ spring:
         wall:
           config:
             multi-statement-allow: true
-
-# Ehcache配置
-cache:
-  type: ehcache
-  ehcache:
-    config: classpath:/ehcache.xml
 
 # 日志配置
 logging:
