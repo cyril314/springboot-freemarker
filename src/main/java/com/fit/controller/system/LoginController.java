@@ -8,6 +8,7 @@ import com.fit.service.system.LogService;
 import com.fit.service.system.UsersService;
 import com.fit.util.*;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.session.Session;
@@ -59,33 +60,40 @@ public class LoginController extends IController {
             UsernamePasswordToken token = new UsernamePasswordToken(USERNAME, new SimpleHash("SHA-1", USERNAME, PASSWORD).toString());
             token.setRememberMe(REMEMBER_ME);
             Subject subject = SecurityUtils.getSubject();
-            subject.login(token);                               //这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中
-            if (subject.isAuthenticated()) {                    //验证是否登录成功
-                removeSession(USERNAME);
-                Session session = Jurisdiction.getSession();
-                pd.put("USERNAME", USERNAME);
-                pd = usersService.findByUsername(pd);
-                User user = new User();
-                user.setUSER_ID(pd.getString("USER_ID"));
-                user.setUSERNAME(pd.getString("USERNAME"));
-                user.setPASSWORD(pd.getString("PASSWORD"));
-                user.setNAME(pd.getString("NAME"));
-                user.setROLE_ID(pd.getString("ROLE_ID"));
-                user.setLAST_LOGIN(pd.getString("LAST_LOGIN"));
-                user.setIP(pd.getString("IP"));
-                user.setSTATUS(pd.getString("STATUS"));
-                session.setAttribute(Const.SESSION_USER, user);         //把当前用户放入session
-                session.setAttribute(Const.SESSION_USERNAME, USERNAME); //放入用户名到session
-                logService.save(USERNAME, "成功登录系统");         //记录日志
-                map.put("result", "success");
-            } else {
-                token.clear();
+            try {
+                subject.login(token);                               //这一步在调用login(token)方法时,它会走到MyRealm.doGetAuthenticationInfo()方法中
+                if (subject.isAuthenticated()) {                    //验证是否登录成功
+                    removeSession(USERNAME);
+                    Session session = Jurisdiction.getSession();
+                    pd.put("USERNAME", USERNAME);
+                    pd = usersService.findByUsername(pd);
+                    User user = new User();
+                    user.setUSER_ID(pd.getString("USER_ID"));
+                    user.setUSERNAME(pd.getString("USERNAME"));
+                    user.setPASSWORD(pd.getString("PASSWORD"));
+                    user.setNAME(pd.getString("NAME"));
+                    user.setROLE_ID(pd.getString("ROLE_ID"));
+                    user.setLAST_LOGIN(pd.getString("LAST_LOGIN"));
+                    user.setIP(pd.getString("IP"));
+                    user.setSTATUS(pd.getString("STATUS"));
+                    session.setAttribute(Const.SESSION_USER, user);         //把当前用户放入session
+                    session.setAttribute(Const.SESSION_USERNAME, USERNAME); //放入用户名到session
+                    logService.save(USERNAME, "成功登录系统");         //记录日志
+                    map.put("result", "success");
+                } else {
+                    token.clear();
+                }
+            } catch (AuthenticationException e) {
+                map.put("result", "usererror");
+            } catch (Exception e) {
+                map.put("result", "exception");
             }
             if (!"success".equals(map.get("result").toString())) {
                 logService.save(USERNAME, "尝试登录系统失败,用户名密码错误,无权限");
             }
+        } else {
+            map.put("result", "error");
         }
-
         return map;
     }
 
