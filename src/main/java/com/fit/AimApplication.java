@@ -2,7 +2,6 @@ package com.fit;
 
 import lombok.extern.slf4j.Slf4j;
 import org.activiti.spring.boot.SecurityAutoConfiguration;
-import org.apache.logging.log4j.util.Strings;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -10,10 +9,10 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.util.StringUtils;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.util.Optional;
 
 @Slf4j
 @EnableCaching
@@ -25,7 +24,7 @@ public class AimApplication extends SpringBootServletInitializer {
         String ip = InetAddress.getLocalHost().getHostAddress();
         String port = System.getenv("POST");
         ConfigurableEnvironment environment = run.getEnvironment();
-        if (Strings.isEmpty(port)) {
+        if (StringUtils.isEmpty(port)) {
             port = environment.getProperty("server.port");
         }
         String path = environment.getProperty("server.servlet.context-path", "").replace("/", "");
